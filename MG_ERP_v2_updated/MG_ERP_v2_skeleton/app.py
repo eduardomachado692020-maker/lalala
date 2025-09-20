@@ -38,7 +38,7 @@ except ImportError:  # pragma: no cover
             )
             return self
 
-from .db import close_db
+from db import close_db
 
 
 def create_app() -> Flask:
@@ -67,7 +67,7 @@ def create_app() -> Flask:
     app.teardown_appcontext(close_db)
 
     # Register application blueprints
-    from .blueprints.main import bp as main_bp  # imported here to avoid circular imports
+    from blueprints.main import bp as main_bp  # imported here to avoid circular imports
     app.register_blueprint(main_bp)
 
     return app
