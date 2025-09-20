@@ -10,7 +10,7 @@ database helper from ``db.py`` to retrieve data.
 from flask import Blueprint, render_template
 import sqlite3
 
-from ..db import get_db
+from db import get_db
 
 
 bp = Blueprint("main", __name__)
