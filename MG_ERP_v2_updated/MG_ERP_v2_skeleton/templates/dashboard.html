@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MG ERP — Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>MG ERP — Dashboard</h1>
+    <nav><a href="/">Home</a> · <a href="/dashboard">Dashboard</a></nav>
+  </header>
+  <main class="container">
+    <h2>Top 10 (Exemplo)</h2>
+    {% if rows and rows|length > 0 %}
+    <table>
+      <thead><tr><th>Produto (canônico)</th><th>Lucro líquido</th></tr></thead>
+      <tbody>
+        {% for r in rows %}
+        <tr><td>{{ r['nome'] }}</td><td>R$ {{ "%.2f"|format(r['lucro_liquido']) }}</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>Sem dados por enquanto. Rode <code>python init_db.py</code> para criar tabelas ou importe seu <code>erp.db</code> existente.</p>
+    {% endif %}
+  </main>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
